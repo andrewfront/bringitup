@@ -1,10 +1,7 @@
-export default class Slider {
-    constructor(page, btns, card) {
-        this.page = document.querySelector(page)
-        this.slides = [...this.page.children]
-        this.btns = document.querySelectorAll(btns)
-        this.slideIndex = 1
-        this.card = document.querySelector(card)
+import Slider from "./slider";
+export default class MainSlider extends Slider {
+    constructor(btns) {
+        super(btns)
     }
     showSlides(n) {
         if (n > this.slides.length) {
@@ -24,8 +21,7 @@ export default class Slider {
             } else {
                 this.hanson.classList.remove('animate__animated', 'animate__slideInUp')
             }
-        } catch (e) {
-        }
+        } catch (e) {}
         this.slides.forEach(slide => {
             slide.style.display = 'none'
         })
@@ -37,7 +33,7 @@ export default class Slider {
     render() {
         try {
             this.hanson = document.querySelector('.hanson')
-        } catch(e){}
+        } catch (e) {}
         this.btns.forEach(item => {
             item.addEventListener('click', () => {
                 this.plusSlides(1)
